@@ -32,7 +32,7 @@ if not is_hekate_usb_connected():
     QMessageBox.critical(
         None,
         "Ошибка",
-        "Nintendo Switch не подключён"
+        "Nintendo Switch не подключён. ПОдключи в хэкатэ шоб работало\n\n(дебаг сообщение)"
     )
     sys.exit(1)
 
