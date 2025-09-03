@@ -1,1 +1,12 @@
-FOR EBAL NX WITH LOVE
+# FOR EBAL NX WITH LOVE
+
+
+шоб запустить
+
+```
+1. Установить путон
+2. pip install PyQt5
+3. запустить main.py
+```
+
+Пока что оно только может коренной loader.kip переписывать и ток некоторые cpu параметры.
