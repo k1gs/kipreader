@@ -1,0 +1,72 @@
+[
+    {
+        "name": "Low Freq MHz",
+        "label": "1600 MHz",
+        "hex" : "006a18"
+    },
+    {
+        "name": "1600 - SYK-LOH eb1",
+        "label": "1600 MHz",
+        "hex": "006a18"
+    },
+    {
+        "name": "1734 - ECO ST3 eb1",
+        "label": "1734 MHz",
+        "hex": "00771a"
+    },        
+    {
+        "name": "1862 - ECO ST2 eb2",
+        "label": "1862 MHz",
+        "hex": "006B1C"
+    },
+    {
+        "name": "1996 - ECO ST1 eb2",
+        "label": "1996 MHz",
+        "hex": "00781E"
+    },
+    {
+        "name": "Medium Freqs MHz",
+        "label": "2131 MHz",
+        "hex" : "008520"
+    },
+    {
+        "name": "2131 - D ST1 eb2",
+        "label": "2131 MHz",
+        "hex": "008520"
+    },
+    {
+        "name": "2265 - D ST2 eb2",
+        "label": "2265 MHz",
+        "hex": "009222"
+    },
+    {
+        "name": "2400 - D ST3 eb3",
+        "label": "2400 MHz",
+        "hex": "009F24"
+    },
+    {
+        "name": "High freqs MHz",
+        "label": "2534 MHz",
+        "hex" : "00ac26"
+    },
+    {
+        "name": "2534 - S ST1 eb3",
+        "label": "2534 MHz",
+        "hex": "00ac26"
+    },
+    {
+        "name": "2665 - S ST2 eb4",
+        "label": "2665 MHz",
+        "hex": "80AC28"
+    },
+    {
+        "name": "2800 - S ST3 eb5",
+        "label": "2800 MHz",
+        "hex": "80b92a"
+    },
+    {
+        "name": "2934 - L_C4C eb5",
+        "label": "2934 MHz",
+        "hex": "80c62c"
+    }
+]

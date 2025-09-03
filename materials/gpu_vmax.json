@@ -1,0 +1,82 @@
+[
+    {
+        "name": "eBamatic (automatic)",
+        "hex": "000000"
+    },
+    {
+        "name": "800 mV - Max recommended",
+        "hex": "200300"
+    },
+    {
+        "name": "805 mV - Caution",
+        "hex": "250300"
+    },
+    {
+        "name": "810 mV - Caution",
+        "hex": "2A0300"
+    },
+    {
+        "name": "815 mV - Caution",
+        "hex": "2F0300"
+    },
+    {
+        "name": "820 mV - Caution",
+        "hex": "340300"
+    },
+    {
+        "name": "825 mV - Caution",
+        "hex": "390300"
+    },
+    {
+        "name": "830 mV - Caution",
+        "hex": "3E0300"
+    },
+    {
+        "name": "835 mV - Caution",
+        "hex": "430300"
+    },
+    {
+        "name": "840 mV - Caution",
+        "hex": "480300"
+    },
+    {
+        "name": "845 mV - Caution",
+        "hex": "4D0300"
+    },
+    {
+        "name": "850 mV - Caution",
+        "hex": "520300"
+    },
+    {
+        "name": "855 mV - Caution",
+        "hex": "570300"
+    },
+    {
+        "name": "860 mV - Caution",
+        "hex": "5C0300"
+    },
+    {
+        "name": "865 mV - Caution",
+        "hex": "610300"
+    },
+    {
+        "name": "870 mV - Caution",
+        "hex": "660300"
+    },
+    {
+        "name": "875 mV - Caution",
+        "hex": "6B0300"
+    },
+    {
+        "name": "880 mV - Caution",
+        "hex": "700300"
+    },
+    {
+        "name": "885 mV - Caution",
+        "hex": "750300"
+    },
+    {
+        "name": "890 mV - Caution",
+        "hex": "7A0300"
+    }
+]

@@ -1,0 +1,19 @@
+[
+    {
+        "name": "Default - 0",
+        "hex": "00"
+    },
+    {
+        "name": "Level 1",
+        "hex": "01"
+    },
+    {
+        "name": "Level 2",
+        "hex": "02"
+    
+    },
+    {
+        "name": "Level 3",
+        "hex": "03"
+    }
+]

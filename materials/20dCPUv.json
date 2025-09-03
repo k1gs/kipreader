@@ -1,0 +1,18 @@
+[
+    {
+        "name": "eBamatic",
+        "hex": "0000"
+    },
+    {
+        "name": "ECO ST 1",
+        "hex": "0100"
+    },
+    {
+        "name": "ECO ST 2",
+        "hex": "0200"
+    },
+    {
+        "name": "ECO ST 3",
+        "hex": "0300"
+    }
+]

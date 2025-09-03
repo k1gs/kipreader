@@ -1,0 +1,30 @@
+[
+{
+   "name": "voltage_mariko.json",
+   "hex_by_cust_offset": "28",
+   "class": "Cpu",
+   "name_of_param": "CPU Max Voltage"
+},
+{
+   "name": "cpu_high_vmin.json",
+   "hex_by_cust_offset": "12348",
+   "class": "Cpu",
+   "name_of_param": "CPU High Freq Vmin"
+},
+{
+   "name": "cpu_low_vmin.json",
+   "hex_by_cust_offset": "48",
+   "class": "Cpu",
+   "name_of_param": "CPU Min Voltage"
+},
+{
+   "name": "cpu_boost.json",
+   "hex_by_cust_offset": "12",
+   "class": "Cpu",
+   "name_of_param": "CPU Boost Clock"
+},
+{
+   "name": ""
+}
+
+]

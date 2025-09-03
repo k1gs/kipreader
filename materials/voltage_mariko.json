@@ -1,0 +1,90 @@
+[
+    {
+        "name": "eBamatic (automatic)",
+        "hex": "0000"
+    },
+    {
+        "name": "1100 mV",
+        "hex": "4C04"
+    },
+    {
+        "name": "1105 mV",
+        "hex": "5104"
+    },
+    {
+        "name": "1110 mV",
+        "hex": "5604"
+    },
+    {
+        "name": "1115 mV",
+        "hex": "5B04"
+    },
+    {
+        "name": "1120 mV - default",
+        "hex": "6004"
+    },
+    {
+        "name": "1125 mV",
+        "hex": "6504"
+    },
+    {
+        "name": "1130 mV",
+        "hex": "6A04"
+    },
+    {
+        "name": "1135 mV",
+        "hex": "6F04"
+    },
+    {
+        "name": "1140 mV",
+        "hex": "7404"
+    },
+    {
+        "name": "1145 mV",
+        "hex": "7904"
+    },
+    {
+        "name": "1150 mV",
+        "hex": "7E04"
+    },
+    {
+        "name": "1155 mV",
+        "hex": "8304"
+    },
+    {
+        "name": "1160 mV - Max recommended",
+        "hex": "8804"
+    },
+    {
+        "name": "1170 mV - Warning",
+        "hex": "9204"
+    },
+    {
+        "name": "1180 mV - Warning",
+        "hex": "9C04"
+    },
+    {
+        "name": "1190 mV - Warning",
+        "hex": "A604"
+    },
+    {
+        "name": "1200 mV - Warning",
+        "hex": "B004"
+    },
+    {
+        "name": "1210mV - Warning",
+        "hex": "BA04"
+    },
+    {
+        "name": "1220mV - Warning",
+        "hex": "C404"
+    },
+    {
+        "name": "1230mV - Warning",
+        "hex": "CE04"
+    },
+    {
+        "name": "1240mV - Warning",
+        "hex": "D804"
+    }
+]

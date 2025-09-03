@@ -1,0 +1,18 @@
+[
+    {
+        "name": "640mV",
+        "hex": "00C409"
+    },
+    {
+        "name": "650mV - Default",
+        "hex": "10EB09"
+    },
+    {
+        "name": "675mV",
+        "hex": "B84C0A"
+    },
+    {
+        "name": "700mV - Caution",
+        "hex": "60AE0A"
+    }
+]

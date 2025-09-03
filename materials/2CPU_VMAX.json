@@ -1,0 +1,22 @@
+[
+    {
+        "name": "eBamatic",
+        "hex": "0000"
+    },    
+    {
+        "name": "1150 mV - Eco",
+        "hex": "7E04"
+    },
+    {
+        "name": "1180 mV - St1",
+        "hex": "9C04"
+    },
+    {
+        "name": "1210 mV - St2",
+        "hex": "BA04"
+    },
+    {
+        "name": "1250 mV - St3",
+        "hex": "E204"
+    }
+]
