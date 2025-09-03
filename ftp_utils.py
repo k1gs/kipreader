@@ -1,4 +1,4 @@
-from ftplib import FTP, error_permm
+from ftplib import FTP, error_perm
 import os
 
 def upload_file_via_ftp(server, port, username, password, local_filepath, remote_filepath, progress_callback=None):

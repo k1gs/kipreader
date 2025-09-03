@@ -1,5 +1,4 @@
 import subprocess
-import pymtp
 
 def is_hekate_usb_connected():
     try:
@@ -10,11 +9,12 @@ def is_hekate_usb_connected():
         output_lower = output.lower()
         # Проверка на Hekate SD RAW USB Device по GUID
         hekate_guid = "{4d36e967-e325-11ce-bfc1-08002be10318}".lower()
+        hekate_name = "hekate sd raw usb device"
         # fuck dont work sht.
         switch_name = "Switch"
         switch_guid = "{eec5ad98-8080-425f-922a-dabf3de3f69a}".lower()
         return (
-            hekate_guid in output_lower or
+            hekate_guid in output_lower or hekate_name in output_lower 
             (switch_name in output_lower and switch_guid in output_lower)
         )
     except Exception:
@@ -57,14 +57,3 @@ def is_switch_mtp_connected():
     except Exception:
         return False
 
-def copy_file_to_switch_mtp(local_filepath, remote_path_on_switch):
-    devs = pymtp.MTP()
-    devs.connect()
-    # втупую ищет devid switcha
-    for storage in devs.storage:
-        if "Switch" in storage.Description:
-            devs.send_file(local_filepath, remote_path_on_switch, storage.id)
-            devs.disconnect()
-            return True
-    devs.disconnect()
-    return False

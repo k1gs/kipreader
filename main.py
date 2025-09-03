@@ -8,12 +8,12 @@ from PyQt5.QtWidgets import (
 )
 from file_utils import edit_bytes_in_file, load_material_options
 from ftp_utils import upload_file_via_ftp
-from usb_utils import copy_file_to_switch
-from device_check import is_mtp_device_connected, is_hekate_usb_connected_by_name
+
+from device_check import is_mtp_device_connected, is_hekate_usb_connected
 
 KUST_OFFSET = 0x41D87  # куст
 
-def is_hekate_usb_connected_by_name():
+def is_hekate_usb_connected():
     try:
         output = subprocess.check_output(
             'wmic diskdrive get Caption', shell=True, encoding='utf-8', errors='ignore'
@@ -27,7 +27,7 @@ def load_kips_by_class(class_name):
         data = json.load(f)
     return [item for item in data if item.get("class") == class_name]
 
-if not is_mtp_device_connected():
+if not is_hekate_usb_connected():
     app = QApplication(sys.argv)
     QMessageBox.critical(
         None,
@@ -97,7 +97,7 @@ class ByteEditor(QWidget):
         self.layout.addWidget(self.open_btn)
 
         # check dev
-        self.device_found = is_mtp_device_connected() or is_hekate_usb_connected_by_name()
+        self.device_found = is_hekate_usb_connected()
 
         # Ftp button 
         self.ftp_btn = QPushButton("Передать по FTP")
