@@ -1,5 +1,6 @@
 # FOR EBAL NX WITH LOVE
 
+<img width="195" height="382" alt="image" src="https://github.com/user-attachments/assets/8ed07781-f3b0-42f5-80c9-8491667c1858" />
 
 шоб запустить
 
@@ -10,3 +11,5 @@
 ```
 
 Пока что оно только может коренной loader.kip переписывать и ток некоторые cpu параметры.
+
+
