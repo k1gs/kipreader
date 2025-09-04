@@ -61,6 +61,8 @@ class FTPDialog(QDialog):
             self.pass_edit.text()
         )
 
+# ...existing code...
+
 class ByteEditor(QWidget):
     def __init__(self, device_found):
         super().__init__()
@@ -88,20 +90,16 @@ class ByteEditor(QWidget):
         self.open_btn.clicked.connect(self.open_file)
         self.layout.addWidget(self.open_btn)
 
-        # check dev
         self.device_found = device_found
 
-        # Ftp button 
         self.ftp_btn = QPushButton("Передать по FTP")
         self.ftp_btn.clicked.connect(self.upload_via_ftp)
         self.layout.addWidget(self.ftp_btn)
 
-        # Кнопка "Передать готовый файл по FTP"
         self.send_ready_ftp_btn = QPushButton("Передать готовый файл по FTP")
         self.send_ready_ftp_btn.clicked.connect(self.send_ready_file_via_ftp)
         self.layout.addWidget(self.send_ready_ftp_btn)
 
-        # Кнопка USB только если устройство найдено
         self.usb_btn = QPushButton("Отправить на Switch по USB")
         self.usb_btn.clicked.connect(self.send_to_switch_usb)
         self.layout.addWidget(self.usb_btn)
@@ -113,7 +111,6 @@ class ByteEditor(QWidget):
         self.filename = None
         self.update_params()
 
-        # hide buttons если девайс не в усб
         if not device_found:
             self.usb_btn.hide()
             self.ftp_btn.show()
@@ -127,6 +124,7 @@ class ByteEditor(QWidget):
     def get_classes(self):
         with open("kips.json", "r", encoding="utf-8") as f:
             data = json.load(f)
+        # Сортируем классы по алфавиту
         return sorted(set(item.get("class", "") for item in data if "class" in item and item.get("class")))
 
     def update_params(self):
@@ -139,11 +137,12 @@ class ByteEditor(QWidget):
 
         class_name = self.class_combo.currentText()
         self.kip_params = load_kips_by_class(class_name)
+        # Сортируем параметры по name_of_param
+        self.kip_params.sort(key=lambda x: x.get("name_of_param", ""))
 
         for param in self.kip_params:
             label = QLabel(param.get("name_of_param", "Параметр"))
             combo = QComboBox()
-            # иишная поебень (переписать)
             options = load_material_options(param["name"])
             for name, hex_value in options:
                 combo.addItem(name, hex_value)
@@ -151,6 +150,7 @@ class ByteEditor(QWidget):
             self.param_layout.addWidget(combo)
             self.param_widgets.append({'label': label, 'combo': combo, 'param': param})
 
+# ...existing code...
     def open_file(self):
         fname, _ = QFileDialog.getOpenFileName(self, "Выберите файл", "", "All Files (*)")
         if fname:

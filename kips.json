@@ -24,7 +24,40 @@
    "name_of_param": "CPU Boost Clock"
 },
 {
-   "name": ""
+   "name": "speed.json",
+   "hex_by_cust_offset": "12336",
+   "class": "Cpu",
+   "name_of_param": "SpeedShift"
+},
+{
+   "name": "ebV.json",
+   "hex_by_cust_offset": "12352",
+   "class": "Ram",
+   "name_of_param": "EBAL"
+},
+{
+   "name": "MHz_mariko.json",
+   "hex_by_cust_offset": "32",
+   "class": "Ram",
+   "name_of_param": "Ram Max clock"
+},
+{
+   "name": "Vddq.json",
+   "hex_by_cust_offset": "36",
+   "class": "Ram",
+   "name_of_param": "Vddq"
+},
+{
+   "name": "Vdd2.json",
+   "hex_by_cust_offset": "16",
+   "class": "Ram",
+   "name_of_param": "Vdd2"
+},
+{
+   "name": "dvb.json",
+   "hex_by_cust_offset": "56",
+   "class": "Ram",
+   "name_of_param": "EMC DVB"
 }
 
 ]
