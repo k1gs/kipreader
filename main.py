@@ -27,15 +27,6 @@ def load_kips_by_class(class_name):
         data = json.load(f)
     return [item for item in data if item.get("class") == class_name]
 
-if not is_hekate_usb_connected():
-    app = QApplication(sys.argv)
-    QMessageBox.critical(
-        None,
-        "Ошибка",
-        "Nintendo Switch не подключён. ПОдключи в хэкатэ шоб работало\n\n(дебаг сообщение)"
-    )
-    sys.exit(1)
-
 class FTPDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -70,9 +61,9 @@ class FTPDialog(QDialog):
         )
 
 class ByteEditor(QWidget):
-    def __init__(self):
+    def __init__(self, device_found):
         super().__init__()
-        self.setWindowTitle("KIP Byte Editor (special for ebal-NX)")
+        self.setWindowTitle("KIP Byte Editor")
         self.layout = QVBoxLayout()
         self.setLayout(self.layout)
 
@@ -97,12 +88,17 @@ class ByteEditor(QWidget):
         self.layout.addWidget(self.open_btn)
 
         # check dev
-        self.device_found = is_hekate_usb_connected()
+        self.device_found = device_found
 
         # Ftp button 
         self.ftp_btn = QPushButton("Передать по FTP")
         self.ftp_btn.clicked.connect(self.upload_via_ftp)
         self.layout.addWidget(self.ftp_btn)
+
+        # Кнопка "Передать готовый файл по FTP"
+        self.send_ready_ftp_btn = QPushButton("Передать готовый файл по FTP")
+        self.send_ready_ftp_btn.clicked.connect(self.send_ready_file_via_ftp)
+        self.layout.addWidget(self.send_ready_ftp_btn)
 
         # Кнопка USB только если устройство найдено
         self.usb_btn = QPushButton("Отправить на Switch по USB")
@@ -117,13 +113,15 @@ class ByteEditor(QWidget):
         self.update_params()
 
         # hide buttons если девайс не в усб
-        if not self.device_found:
+        if not device_found:
             self.usb_btn.hide()
             self.ftp_btn.show()
+            self.send_ready_ftp_btn.show()
             QMessageBox.information(self, "Внимание", "Switch не обнаружен! Используйте передачу по FTP.")
         else:
             self.usb_btn.show()
             self.ftp_btn.hide()
+            self.send_ready_ftp_btn.show()
 
     def get_classes(self):
         with open("kips.json", "r", encoding="utf-8") as f:
@@ -205,8 +203,34 @@ class ByteEditor(QWidget):
         else:
             QMessageBox.critical(self, "Ошибка", msg)
 
+    def send_ready_file_via_ftp(self):
+        fname, _ = QFileDialog.getOpenFileName(self, "Выберите файл для отправки", "", "All Files (*)")
+        if not fname:
+            return
+        dlg = FTPDialog(self)
+        if dlg.exec_() == QDialog.Accepted:
+            ip, port, user, pwd = dlg.get_data()
+            remote_path = "/atmosphere/kips/" + os.path.basename(fname)
+            self.progress.setValue(0)
+            def progress_callback(sent, total):
+                percent = int(sent * 100 / total)
+                self.progress.setValue(percent)
+            ok, msg = upload_file_via_ftp(
+                ip, port, user, pwd, fname, remote_path, progress_callback
+            )
+            if ok:
+                QMessageBox.information(self, "Успех", msg)
+            else:
+                QMessageBox.critical(self, "Ошибка", msg)
+            self.progress.setValue(0)
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = ByteEditor()
+    try:
+        device_found = is_hekate_usb_connected()
+    except Exception:
+        device_found = False
+
+    window = ByteEditor(device_found)
     window.show()
     sys.exit(app.exec_())
