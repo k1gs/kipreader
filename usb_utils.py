@@ -1,33 +1,22 @@
-import subprocess
 import os
 import shutil
 
-def find_switch_drive():
-    """
-    E: for mtp
-    """
-    try:
-        output = subprocess.check_output(
-            'wmic logicaldisk get DeviceID,VolumeName', shell=True, encoding='utf-8', errors='ignore'
-        )
-        for line in output.splitlines():
-            if "Switch" in line:
-                parts = line.split()
-                if parts:
-                    return parts[0]  # в теории должно возвращать букву диска, на деле хуйня
-    except Exception:
-        pass
-    return None
-
 def copy_file_to_switch(local_filepath):
-    drive = find_switch_drive()
-    if not drive:
-        return False, "Switch не найден"
+    drive = "E:"
     dest_dir = os.path.join(drive + os.sep, "atmosphere", "kips")
     os.makedirs(dest_dir, exist_ok=True)
     dest_path = os.path.join(dest_dir, os.path.basename(local_filepath))
     try:
         shutil.copy2(local_filepath, dest_path)
-        return True, f"Файл скопирован: {dest_path}"
+        # 支票 
+        if os.path.exists(dest_path):
+            orig_size = os.path.getsize(local_filepath)
+            dest_size = os.path.getsize(dest_path)
+            if orig_size == dest_size:
+                return True, f"Файл успешно скопирован: {dest_path}\nРазмер: {dest_size} байт"
+            else:
+                return False, f"Размер файла не совпадает! Оригинал: {orig_size}, на Switch: {dest_size}"
+        else:
+            return False, "Файл не найден на целевом устройстве после копирования!"
     except Exception as e:
-        return False, str(e)
+        return False, f"Ошибка копирования: {e}"
