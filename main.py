@@ -43,10 +43,8 @@ class FTPDialog(QDialog):
         self.pass_edit.setEchoMode(QLineEdit.Password)
         self.pass_edit.setText("")
 
-        self.layout.addRow("IP адрес:", self.ip_edit)
+        self.layout.addRow("IP адрес:", self.ip_edit) # dbi не требует пароля и логина
         self.layout.addRow("Порт:", self.port_edit)
-        self.layout.addRow("Пользователь:", self.user_edit)
-        self.layout.addRow("Пароль:", self.pass_edit)
 
         self.buttons = QDialogButtonBox(QDialogButtonBox.Ok | QDialogButtonBox.Cancel)
         self.buttons.accepted.connect(self.accept)
@@ -61,7 +59,6 @@ class FTPDialog(QDialog):
             self.pass_edit.text()
         )
 
-# ...existing code...
 
 class ByteEditor(QWidget):
     def __init__(self, device_found):
@@ -124,7 +121,7 @@ class ByteEditor(QWidget):
     def get_classes(self):
         with open("kips.json", "r", encoding="utf-8") as f:
             data = json.load(f)
-        # Сортируем классы по алфавиту
+        # Сортировка класссов 
         return sorted(set(item.get("class", "") for item in data if "class" in item and item.get("class")))
 
     def update_params(self):
@@ -139,7 +136,8 @@ class ByteEditor(QWidget):
         self.kip_params = load_kips_by_class(class_name)
         # Сортируем параметры по name_of_param
         self.kip_params.sort(key=lambda x: x.get("name_of_param", ""))
-
+        
+         # Вигеты для всех параметров
         for param in self.kip_params:
             label = QLabel(param.get("name_of_param", "Параметр"))
             combo = QComboBox()
@@ -150,7 +148,6 @@ class ByteEditor(QWidget):
             self.param_layout.addWidget(combo)
             self.param_widgets.append({'label': label, 'combo': combo, 'param': param})
 
-# ...existing code...
     def open_file(self):
         fname, _ = QFileDialog.getOpenFileName(self, "Выберите файл", "", "All Files (*)")
         if fname:
@@ -193,7 +190,7 @@ class ByteEditor(QWidget):
             else:
                 QMessageBox.critical(self, "Ошибка", msg)
             self.progress.setValue(0)
-
+# функция отправки файла на сыч по узби
     def send_to_switch_usb(self):
         if not self.filename:
             QMessageBox.warning(self, "Внимание", "Сначала выберите файл!")
