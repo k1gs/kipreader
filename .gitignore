@@ -186,3 +186,8 @@ dist/main/_internal/PyQt5/Qt5/translations/qtbase_sk.qm
 dist/main/_internal/PyQt5/Qt5/translations/qtbase_tr.qm
 dist/main/_internal/PyQt5/Qt5/translations/qtbase_uk.qm
 dist/main/_internal/PyQt5/Qt5/translations/qtbase_zh_TW.qm
+elements/__pycache__/device_check.cpython-312.pyc
+.gitignore
+elements/__pycache__/ftp_utils.cpython-312.pyc
+elements/__pycache__/usb_utils.cpython-312.pyc
+elements/__pycache__/file_utils.cpython-312.pyc
