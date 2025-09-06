@@ -1,63 +1,120 @@
+
+
 [
 {
    "name": "voltage_mariko.json",
    "hex_by_cust_offset": "28",
-   "class": "Cpu",
+   "class": "CPU",
    "name_of_param": "CPU Max Voltage"
 },
 {
    "name": "cpu_high_vmin.json",
    "hex_by_cust_offset": "12348",
-   "class": "Cpu",
+   "class": "CPU",
    "name_of_param": "CPU High Freq Vmin"
 },
 {
    "name": "cpu_low_vmin.json",
    "hex_by_cust_offset": "48",
-   "class": "Cpu",
+   "class": "CPU",
    "name_of_param": "CPU Min Voltage"
 },
 {
    "name": "cpu_boost.json",
    "hex_by_cust_offset": "12",
-   "class": "Cpu",
+   "class": "CPU",
    "name_of_param": "CPU Boost Clock"
 },
 {
    "name": "speed.json",
    "hex_by_cust_offset": "12336",
-   "class": "Cpu",
+   "class": "CPU",
    "name_of_param": "SpeedShift"
 },
 {
    "name": "ebV.json",
    "hex_by_cust_offset": "12352",
-   "class": "Ram",
+   "class": "RAM",
    "name_of_param": "EBAL"
 },
 {
    "name": "MHz_mariko.json",
    "hex_by_cust_offset": "32",
-   "class": "Ram",
+   "class": "RAM",
    "name_of_param": "Ram Max clock"
 },
 {
    "name": "Vddq.json",
    "hex_by_cust_offset": "36",
-   "class": "Ram",
+   "class": "RAM",
    "name_of_param": "Vddq"
 },
 {
    "name": "Vdd2.json",
    "hex_by_cust_offset": "16",
-   "class": "Ram",
+   "class": "RAM",
    "name_of_param": "Vdd2"
 },
 {
    "name": "dvb.json",
    "hex_by_cust_offset": "56",
-   "class": "Ram",
+   "class": "RAM",
    "name_of_param": "EMC DVB"
+},
+{
+   "name": "eba.json",
+   "hex_by_cust_offset": "12360",
+   "class": "RAM",
+   "name_of_param": "Eba Shift"
+},
+{
+   "name": "core_timings1.json",
+   "hex_by_cust_offset": "60",
+   "class": "Timings",
+   "name_of_param": "T1"
+},
+{
+   "name": "core_timings2.json",
+   "hex_by_cust_offset": "64",
+   "class": "Timings",
+   "name_of_param": "T2"
+},
+{
+   "name": "core_timings3.json",
+   "hex_by_cust_offset": "68",
+   "class": "Timings",
+   "name_of_param": "T3"
+},
+{
+   "name": "core_timings4.json",
+   "hex_by_cust_offset": "72",
+   "class": "Timings",
+   "name_of_param": "T4"
+},
+{
+   "name": "core_timings5.json",
+   "hex_by_cust_offset": "76",
+   "class": "Timings",
+   "name_of_param": "T5"
+},
+{
+   "name": "core_timings6.json",
+   "hex_by_cust_offset": "80",
+   "class": "Timings",
+   "name_of_param": "T6"
+},
+{
+   "name": "core_timings7.json",
+   "hex_by_cust_offset": "84",
+   "class": "Timings",
+   "name_of_param": "T7"
+},
+{
+   "name": "core_timings8.json",
+   "hex_by_cust_offset": "12356",
+   "class": "Timings",
+   "name_of_param": "T8"
 }
+
 
 ]

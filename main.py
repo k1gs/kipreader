@@ -6,11 +6,11 @@ from PyQt5.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QLabel, QPushButton, QFileDialog, QMessageBox, QComboBox,
     QDialog, QLineEdit, QFormLayout, QDialogButtonBox, QProgressBar
 )
-from file_utils import edit_bytes_in_file, load_material_options
-from ftp_utils import upload_file_via_ftp
+from elements.file_utils import edit_bytes_in_file, load_material_options
+from elements.ftp_utils import upload_file_via_ftp
 
-from device_check import is_mtp_device_connected, is_hekate_usb_connected
-from usb_utils import copy_file_to_switch
+from elements.device_check import is_mtp_device_connected, is_hekate_usb_connected
+from elements.usb_utils import copy_file_to_switch
 
 KUST_OFFSET = 0x41D87  # куст
 
