@@ -65,7 +65,6 @@ class ByteEditor(QWidget):
         super().__init__()
         self.setObjectName("MainWindow")
 
-        # --- Фон через QPalette ---
         background_path = os.path.abspath("back1.png")
         if os.path.exists(background_path):
             palette = QPalette()
@@ -98,7 +97,6 @@ class ByteEditor(QWidget):
         self.class_combo.currentIndexChanged.connect(self.update_params)
         main_layout.addWidget(self.class_combo)
 
-        # Прокручиваемая область для параметров
         self.scroll_area = QScrollArea()
         self.scroll_area.setWidgetResizable(True)
         self.scroll_content = QWidget()
@@ -109,7 +107,6 @@ class ByteEditor(QWidget):
 
         self.param_widgets = []
 
-        # Кнопки управления
         btn_frame = QFrame()
         btn_layout = QVBoxLayout(btn_frame)
         btn_layout.setSpacing(10)
@@ -164,6 +161,7 @@ class ByteEditor(QWidget):
             }}
         """)
         self.setWindowFlags(self.windowFlags() & ~Qt.WindowMaximizeButtonHint)
+        self.setWindowTitle("KIPREADER")
 
     def get_classes(self):
         with open("kips.json", "r", encoding="utf-8") as f:
@@ -274,6 +272,26 @@ class ByteEditor(QWidget):
             palette.setBrush(QPalette.Window, QBrush(pixmap))
             self.setPalette(palette)
         super().resizeEvent(event)
+
+def resource_path(relative_path):
+    """Возвращает абсолютный путь к ресурсу, работает и для PyInstaller, и для обычного запуска."""
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
+materials_dir = resource_path("materials")
+if os.path.exists(materials_dir):
+    for fname in os.listdir(materials_dir):
+        fpath = os.path.join(materials_dir, fname)
+        if os.path.isfile(fpath):
+            with open(fpath, "r", encoding="utf-8") as f:
+                # обработка файла
+                ...
+else:
+    print("Папка materials не найдена!")
+
+with open(resource_path("kips.json"), "r", encoding="utf-8") as f:
+    data = json.load(f)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
