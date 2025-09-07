@@ -114,7 +114,210 @@
    "hex_by_cust_offset": "12356",
    "class": "Timings",
    "name_of_param": "T8"
+},
+{
+   "name": "gpu_vmax.json",
+   "hex_by_cust_offset": "12344",
+   "class": "GPU",
+   "name_of_param": "GPU Max Voltage"
+},
+{
+   "name": "gpu_vmin.json",
+   "hex_by_cust_offset": "52",
+   "class": "GPU",
+   "name_of_param": "GPU Min Voltage"
+},
+{
+   "name": "pMeh19.json",
+   "hex_by_cust_offset": "12440",
+   "class": "GPU",
+   "name_of_param": "GPU Vmin offset"
+},
+{
+   "name": "pMeh21.json",
+   "hex_by_cust_offset": "12448",
+   "class": "GPU",
+   "name_of_param": "GPU Vmin (Max Ram) offset"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "88",
+   "class": "GPUvTable",
+   "name_of_param": "307 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "92",
+   "class": "GPUvTable",
+   "name_of_param": "345 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "96",
+   "class": "GPUvTable",
+   "name_of_param": "384 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "100",
+   "class": "GPUvTable",
+   "name_of_param": "422 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "104",
+   "class": "GPUvTable",
+   "name_of_param": "460 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "108",
+   "class": "GPUvTable",
+   "name_of_param": "499 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "112",
+   "class": "GPUvTable",
+   "name_of_param": "537 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "116",
+   "class": "GPUvTable",
+   "name_of_param": "576 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "120",
+   "class": "GPUvTable",
+   "name_of_param": "614 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "124",
+   "class": "GPUvTable",
+   "name_of_param": "652 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "128",
+   "class": "GPUvTable",
+   "name_of_param": "691 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "132",
+   "class": "GPUvTable",
+   "name_of_param": "729 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "136",
+   "class": "GPUvTable",
+   "name_of_param": "768 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "140",
+   "class": "GPUvTable",
+   "name_of_param": "806 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "144",
+   "class": "GPUvTable",
+   "name_of_param": "844 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "148",
+   "class": "GPUvTable",
+   "name_of_param": "883 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "152",
+   "class": "GPUvTable",
+   "name_of_param": "921 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "156",
+   "class": "GPUvTable",
+   "name_of_param": "960 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "160",
+   "class": "GPUvTable",
+   "name_of_param": "998 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "164",
+   "class": "GPUvTable",
+   "name_of_param": "1036 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "168",
+   "class": "GPUvTable",
+   "name_of_param": "1075 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "172",
+   "class": "GPUvTable",
+   "name_of_param": "1113 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "176",
+   "class": "GPUvTable",
+   "name_of_param": "1152 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "180",
+   "class": "GPUvTable",
+   "name_of_param": "1190 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "184",
+   "class": "GPUvTable",
+   "name_of_param": "1228 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "188",
+   "class": "GPUvTable",
+   "name_of_param": "1267 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "192",
+   "class": "GPUvTable",
+   "name_of_param": "1305 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "196",
+   "class": "GPUvTable",
+   "name_of_param": "1344 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "200",
+   "class": "GPUvTable",
+   "name_of_param": "1382 MHz"
+},
+{
+   "name": "lowest.json",
+   "hex_by_cust_offset": "204",
+   "class": "GPUvTable",
+   "name_of_param": "1420 MHz"
 }
-
 
 ]
