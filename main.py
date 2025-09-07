@@ -4,15 +4,16 @@ import subprocess
 import json
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QLabel, QPushButton, QFileDialog, QMessageBox, QComboBox,
-    QDialog, QLineEdit, QFormLayout, QDialogButtonBox, QProgressBar
+    QDialog, QLineEdit, QFormLayout, QDialogButtonBox, QProgressBar, QScrollArea, QFrame
 )
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPalette, QBrush, QPixmap
 from elements.file_utils import edit_bytes_in_file, load_material_options
 from elements.ftp_utils import upload_file_via_ftp
-
 from elements.device_check import is_mtp_device_connected, is_hekate_usb_connected
 from elements.usb_utils import copy_file_to_switch
 
-KUST_OFFSET = 0x41D87  # куст
+CUST_OFFSET = 0x41D87  # куст
 
 def is_hekate_usb_connected():
     try:
@@ -43,7 +44,7 @@ class FTPDialog(QDialog):
         self.pass_edit.setEchoMode(QLineEdit.Password)
         self.pass_edit.setText("")
 
-        self.layout.addRow("IP адрес:", self.ip_edit) # dbi не требует пароля и логина
+        self.layout.addRow("IP адрес:", self.ip_edit)
         self.layout.addRow("Порт:", self.port_edit)
 
         self.buttons = QDialogButtonBox(QDialogButtonBox.Ok | QDialogButtonBox.Cancel)
@@ -59,51 +60,85 @@ class FTPDialog(QDialog):
             self.pass_edit.text()
         )
 
-
 class ByteEditor(QWidget):
     def __init__(self, device_found):
         super().__init__()
-        self.setWindowTitle("KIP Byte Editor")
-        self.layout = QVBoxLayout()
-        self.setLayout(self.layout)
+        self.setObjectName("MainWindow")
+
+        # --- Фон через QPalette ---
+        background_path = os.path.abspath("back1.png")
+        if os.path.exists(background_path):
+            palette = QPalette()
+            pixmap = QPixmap(background_path).scaled(self.size(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation)
+            palette.setBrush(QPalette.Window, QBrush(pixmap))
+            self.setPalette(palette)
+            self.setAutoFillBackground(True)
+
+        content_frame = QFrame()
+        content_frame.setObjectName("ContentFrame")
+        content_frame.setMaximumWidth(600)
+        content_frame.setMinimumWidth(400)
+        main_layout = QVBoxLayout(content_frame)
+        main_layout.setContentsMargins(20, 20, 20, 20)
+        main_layout.setSpacing(15)
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(120, 80, 120, 80)  # большие отступы!
+        layout.addWidget(content_frame, alignment=Qt.AlignCenter)
+
+        title = QLabel("KIP Byte Editor")
+        title.setAlignment(Qt.AlignCenter)
+        title.setStyleSheet("font-size: 22px; font-weight: bold; margin-bottom: 10px;")
+        main_layout.addWidget(title)
 
         self.class_label = QLabel("Выберите класс параметров:")
-        self.layout.addWidget(self.class_label)
+        main_layout.addWidget(self.class_label)
 
         self.class_combo = QComboBox()
         self.class_combo.addItems(self.get_classes())
         self.class_combo.currentIndexChanged.connect(self.update_params)
-        self.layout.addWidget(self.class_combo)
+        main_layout.addWidget(self.class_combo)
+
+        # Прокручиваемая область для параметров
+        self.scroll_area = QScrollArea()
+        self.scroll_area.setWidgetResizable(True)
+        self.scroll_content = QWidget()
+        self.param_layout = QVBoxLayout(self.scroll_content)
+        self.param_layout.setAlignment(Qt.AlignTop)
+        self.scroll_area.setWidget(self.scroll_content)
+        main_layout.addWidget(self.scroll_area, stretch=1)
 
         self.param_widgets = []
-        self.param_layout = QVBoxLayout()
-        self.layout.addLayout(self.param_layout)
+
+        # Кнопки управления
+        btn_frame = QFrame()
+        btn_layout = QVBoxLayout(btn_frame)
+        btn_layout.setSpacing(10)
 
         self.btn = QPushButton("Изменить байт(ы)")
         self.btn.clicked.connect(self.edit_bytes)
-        self.layout.addWidget(self.btn)
+        btn_layout.addWidget(self.btn)
 
         self.open_btn = QPushButton("Открыть файл")
         self.open_btn.clicked.connect(self.open_file)
-        self.layout.addWidget(self.open_btn)
-
-        self.device_found = device_found
+        btn_layout.addWidget(self.open_btn)
 
         self.ftp_btn = QPushButton("Передать по FTP")
         self.ftp_btn.clicked.connect(self.upload_via_ftp)
-        self.layout.addWidget(self.ftp_btn)
+        btn_layout.addWidget(self.ftp_btn)
 
         self.send_ready_ftp_btn = QPushButton("Передать готовый файл по FTP")
         self.send_ready_ftp_btn.clicked.connect(self.send_ready_file_via_ftp)
-        self.layout.addWidget(self.send_ready_ftp_btn)
+        btn_layout.addWidget(self.send_ready_ftp_btn)
 
         self.usb_btn = QPushButton("Отправить на Switch по USB")
         self.usb_btn.clicked.connect(self.send_to_switch_usb)
-        self.layout.addWidget(self.usb_btn)
+        btn_layout.addWidget(self.usb_btn)
+
+        main_layout.addWidget(btn_frame)
 
         self.progress = QProgressBar()
         self.progress.setValue(0)
-        self.layout.addWidget(self.progress)
+        main_layout.addWidget(self.progress)
 
         self.filename = None
         self.update_params()
@@ -118,10 +153,21 @@ class ByteEditor(QWidget):
             self.ftp_btn.hide()
             self.send_ready_ftp_btn.show()
 
+        self.setStyleSheet(f"""
+            #MainWindow {{
+                background-repeat: no-repeat;
+                background-position: center;
+            }}
+            QFrame#ContentFrame {{
+                background: rgba(255,255,255,0.5);
+                border-radius: 16px;
+            }}
+        """)
+        self.setWindowFlags(self.windowFlags() & ~Qt.WindowMaximizeButtonHint)
+
     def get_classes(self):
         with open("kips.json", "r", encoding="utf-8") as f:
             data = json.load(f)
-        # Сортировка класссов 
         return sorted(set(item.get("class", "") for item in data if "class" in item and item.get("class")))
 
     def update_params(self):
@@ -134,12 +180,11 @@ class ByteEditor(QWidget):
 
         class_name = self.class_combo.currentText()
         self.kip_params = load_kips_by_class(class_name)
-        # Сортируем параметры по name_of_param
         self.kip_params.sort(key=lambda x: x.get("name_of_param", ""))
-        
-         # Вигеты для всех параметров
+
         for param in self.kip_params:
             label = QLabel(param.get("name_of_param", "Параметр"))
+            label.setStyleSheet("font-size: 14px; margin-top: 8px;")
             combo = QComboBox()
             options = load_material_options(param["name"])
             for name, hex_value in options:
@@ -160,9 +205,8 @@ class ByteEditor(QWidget):
         try:
             for widget in self.param_widgets:
                 param = widget['param']
-                # hex_by_cust_offset — смещение ОТ куста
                 rel_offset = int(param.get("hex_by_cust_offset", 0))
-                offset = KUST_OFFSET + rel_offset
+                offset = CUST_OFFSET + rel_offset
                 hex_value = widget['combo'].currentData()
                 new_bytes = bytes.fromhex(hex_value)
                 edit_bytes_in_file(self.filename, offset, new_bytes)
@@ -190,7 +234,7 @@ class ByteEditor(QWidget):
             else:
                 QMessageBox.critical(self, "Ошибка", msg)
             self.progress.setValue(0)
-# функция отправки файла на сыч по узби
+
     def send_to_switch_usb(self):
         if not self.filename:
             QMessageBox.warning(self, "Внимание", "Сначала выберите файл!")
@@ -221,6 +265,15 @@ class ByteEditor(QWidget):
             else:
                 QMessageBox.critical(self, "Ошибка", msg)
             self.progress.setValue(0)
+
+    def resizeEvent(self, event):
+        background_path = os.path.abspath("back1.png")
+        if os.path.exists(background_path):
+            pixmap = QPixmap(background_path).scaled(self.size(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation)
+            palette = self.palette()
+            palette.setBrush(QPalette.Window, QBrush(pixmap))
+            self.setPalette(palette)
+        super().resizeEvent(event)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
