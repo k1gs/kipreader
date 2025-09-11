@@ -21,9 +21,7 @@ def is_hekate_usb_connected():
         return False
 
 def is_wpd_device_connected():
-    """
-    Проверяет наличие устройств класса WPD (Windows Portable Device) по GUID.
-    """
+
     try:
         output = subprocess.check_output(
             'wmic path Win32_PnPEntity where "ClassGuid=\'{eec5ad98-8080-425f-922a-dabf3de3f69a}\'" get Name',

@@ -1,4 +1,4 @@
-# FOR EBAL NX WITH LOVE
+# FOR EBAL NX
 
 <img width="195" height="382" alt="image" src="https://github.com/user-attachments/assets/8ed07781-f3b0-42f5-80c9-8491667c1858" />
 
