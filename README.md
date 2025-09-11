@@ -1,15 +1,17 @@
 # FOR EBAL NX
 
-<img width="195" height="382" alt="image" src="https://github.com/user-attachments/assets/8ed07781-f3b0-42f5-80c9-8491667c1858" />
+<img width="638" height="750" alt="image" src="https://github.com/user-attachments/assets/4843e783-3afa-436b-8140-d273c8aacd74" />
 
-шоб запустить
+
+> Для того чтобы запустить программу, вы можете скачать последний релиз во вкладке Releases. Или же собрать файл самому, для этого используйте инструкцию ниже.
 
 ```
-1. Установить путон
-2. pip install PyQt5
-3. запустить main.py
+1. git clone https://github.com/k1gs/kipreader.git
+2. Установить путон
+3. pip install PyQt5 && Запустить Build скрипты из коренной папки
+4. запустить main.py
 ```
 
-Пока что оно только может коренной loader.kip переписывать и ток некоторые cpu параметры.
+
 
 
