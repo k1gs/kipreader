@@ -1,6 +1,6 @@
 import os
 import json
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QComboBox, QProgressBar, QScrollArea, QFrame, QMessageBox, QFileDialog
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QComboBox, QProgressBar, QScrollArea, QFrame, QMessageBox, QFileDialog, QDialog
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPalette, QBrush, QPixmap
 from .params_dialog import ParamsDialog
@@ -74,7 +74,7 @@ class ByteEditor(QWidget):
             self.usb_btn.hide()
             self.ftp_btn.show()
             self.send_ready_ftp_btn.show()
-            QMessageBox.information(self, "Switch не обнаружен. Используйте FTP.",)
+            QMessageBox.information(self, "Внимание", "Switch не обнаружен. Используйте FTP.")
         else:
             self.usb_btn.show()
             self.ftp_btn.hide()
@@ -89,7 +89,7 @@ class ByteEditor(QWidget):
                 border-radius: 16px;
             }}
         """)
-        self.setWindowFlags(self.windowFlags() & ~Qt.WindowMaximizeButtonHint)
+        self.setWindowFlags(Qt.Window | Qt.CustomizeWindowHint | Qt.WindowTitleHint)
         self.setWindowTitle("KIPREADER")
     def get_classes(self):
         with open("kips.json", "r", encoding="utf-8") as f:
@@ -207,6 +207,5 @@ class ByteEditor(QWidget):
             pixmap = QPixmap(background_path).scaled(self.size(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation)
             palette = self.palette()
             palette.setBrush(QPalette.Window, QBrush(pixmap))
-            self.setPalette(palette)
+            palette.setBrush(QPalette.ColorRole.Window, QBrush(pixmap))
         super().resizeEvent(event)
-
